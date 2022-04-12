@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <title>Тест 1</title>
+     <link rel="stylesheet" href="css.css">
+        <link rel="stylesheet" href="css1.css">
+    <link rel="stylesheet" href="C:\Users\Админ\OneDrive\Рабочий стол">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"/>
+</head>
+<style>
+span.quest {font-weight: bold;}
+</style>
+<body>
+<div class="menu">
+  <img src="Logo9.png" width="90" height="90">
+  <a href="start.html">Меню</a>
+  <a href="first.html">Тема 1</a>
+  <a href="second.html">Тема 2</a>
+  <a href="support.html">Помощь</a>
+</div>
+<div class="main">
+
+
+<h1><script>document.write(title)</script></h1>
+<h2><script>document.write(subtitle)</script></h2>
+
+<form name="quiz">
+<ol>
+</ol>
+<input type="button" onClick="Score()" value="Проверить результаты" />
+
+</form>
+<p><span style='font-size:12.0pt'><a href="test2.html">На следующую</a></span></p>
+
+<p class="rt">
+    <img src="11PHOTO.png" width="200" height="250">
+    <img src="12PHOTO.png" width="200" height="250">
+    <img src="13PHOTO.png" width="200" height="250">
+</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+<script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+<script type="text/javascript">
+var title = 'Срез по первому блоку';
+var subtitle = "Этот тест позволяет оценить Ваши знания";
+
+
+var questions=[
+{
+	text: "Какой треугольник является тупоугольным?",
+	answers: [" а",
+		  " б",
+		  " в"],
+	correctAnswer: 2 // нумерация ответов с нуля!
+},
+];
+
+var yourAns = new Array;
+var score = 0;
+
+function Engine(question, answer) {yourAns[question]=answer;}
+
+function Score(){
+   var answerText = "Результаты:\n";
+   for(var i = 0; i < yourAns.length; ++i){
+	var num = i+1;
+	answerText=answerText+"\n    Вопрос №"+ num +"";
+	if(yourAns[i]!=questions[i].correctAnswer){
+	    answerText=answerText+"\n    Правильный ответ: " +
+		questions[i].answers[questions[i].correctAnswer] + "\n";
+	  }
+        else{
+	    answerText=answerText+": Верно! \n";
+	    ++score;
+	    }
+       }
+
+   answerText=answerText+"\nВсего правильных ответов: "+score+"\n";
+
+   alert(answerText);
+   yourAns = [];
+   score = 0;
+   clearForm("quiz");
+}
+function clearForm(name) {
+   var f = document.forms[name];
+   for(var i = 0; i < f.elements.length; ++i) {
+	if(f.elements[i].checked)
+		f.elements[i].checked = false;
+}
+}
+</script>
+<script>
+for(var q=0; q<questions.length; ++q) {
+   var question = questions[q];
+   var idx = 1 + q;
+
+   document.writeln('<li><span class="quest">' + question.text + '</span><br/>');
+   for(var i in question.answers) {
+	document.writeln('<input type=radio name="q' + idx + '" value="' + i +
+	'" onClick="Engine(' + q + ', this.value)">' + question.answers[i] + '<br/>');
+}
+}
+</script>
+</html>
